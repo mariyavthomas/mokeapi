@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Discounts extends StatelessWidget {
   final int index;
@@ -41,9 +42,9 @@ COSMETIC''',
 
     // Get a color based on the index
     List<Color> colors = [
-      Colors.green,
+      const Color.fromRGBO(16, 194, 94, 1),
+      const Color.fromARGB(255, 0, 106, 212),
       Colors.red,
-      Colors.cyan,
       Colors.tealAccent
     ];
     Color containerColor = colors[index % colors.length]; // Loop through colors
@@ -53,51 +54,65 @@ COSMETIC''',
     String discountText = items[index % items.length]['text']!;
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 15),
       child: Container(
-        width: 350,
-        margin: EdgeInsets.symmetric(vertical: 13, horizontal: 8),
-        padding: EdgeInsets.all(20),
+        width: 374,
+        margin: EdgeInsets.symmetric(vertical: 13, horizontal: 1),
+        padding: EdgeInsets.only(top: 45, left: 20),
         decoration: BoxDecoration(
           color: containerColor,
-          image: DecorationImage(
-            image: AssetImage(imagePath), // Dynamically set the image
-            fit: BoxFit.cover,
-          ),
-          borderRadius: BorderRadius.circular(10),
+          // image: DecorationImage(
+          //   //image: AssetImage(imagePath), // Dynamically set the image
+          //   fit: BoxFit.cover,
+          //),
+          borderRadius: BorderRadius.circular(5),
         ),
-        child: Column(
+        child: Row(
           children: [
-            Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Text(
-                    discountText, // Dynamically set the discount text
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 19,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.only(right: 180),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.orange),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(6), // Reduced radius
-                        ),
+                Text(discountText, // Dynamically set the discount text
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16),
+                    )),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        const Color.fromRGBO(255, 137, 24, 1)),
+                    fixedSize: MaterialStateProperty.all(Size(170, 26)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(3), // Reduced radius
                       ),
                     ),
-                    onPressed: () {},
-                    child: Text('CHECK NOW'),
-                  )),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'CHECK NOW',
+                    style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                            color: Colors.white)),
+                  ),
+                )
+              ],
+            ),
+            Container(
+              height: 300,
+              width: 181, // Add width to avoid overflow
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                ),
+                // Optional for rounded corners
+              ),
             )
           ],
         ),

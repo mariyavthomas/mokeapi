@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:mockapi/application/apifetch/fetchdata_bloc.dart';
+import 'package:flutter/foundation.dart'; // For compute function
 
 class Notificationscreen extends StatefulWidget {
   const Notificationscreen({super.key});
@@ -13,6 +15,7 @@ class _NotificationscreenState extends State<Notificationscreen> {
   @override
   void initState() {
     super.initState();
+    // Fetching data on screen load
     context.read<FetchdataBloc>().add(Fetchdata());
   }
 
@@ -36,8 +39,9 @@ class _NotificationscreenState extends State<Notificationscreen> {
       body: BlocBuilder<FetchdataBloc, FetchdataState>(
         builder: (context, state) {
           if (state is Fechdataloading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return  Center(
+              child: LoadingAnimationWidget.stretchedDots(
+                  color:Colors.blue, size: 60)
             );
           } else if (state is Fechloadeddata) {
             final data = state.loadad;
@@ -90,10 +94,29 @@ class _NotificationscreenState extends State<Notificationscreen> {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            Text(
-                              calculateTimeAgo(notification.timestamp),
-                              style: const TextStyle(
-                                  fontSize: 12.0, color: Colors.grey),
+                            FutureBuilder<String>(
+                              future: compute(calculateTimeAgo, notification.timestamp),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState == ConnectionState.waiting) {
+                                  return const Text(
+                                    'Calculating...',
+                                    style: TextStyle(
+                                        fontSize: 12.0, color: Colors.grey),
+                                  );
+                                } else if (snapshot.hasData) {
+                                  return Text(
+                                    snapshot.data!,
+                                    style: const TextStyle(
+                                        fontSize: 12.0, color: Colors.grey),
+                                  );
+                                } else {
+                                  return const Text(
+                                    'Error calculating time',
+                                    style: TextStyle(
+                                        fontSize: 12.0, color: Colors.grey),
+                                  );
+                                }
+                              },
                             ),
                           ],
                         ),
@@ -106,7 +129,7 @@ class _NotificationscreenState extends State<Notificationscreen> {
                 return Divider(
                   thickness: 1.0,
                   color: const Color.fromARGB(255, 227, 222, 222),
-                ); // Adds a divider between items
+                );
               },
             );
           } else if (state is Fechdataerror) {
@@ -119,20 +142,20 @@ class _NotificationscreenState extends State<Notificationscreen> {
       ),
     );
   }
+}
 
-  String calculateTimeAgo(String timestamp) {
-    final now = DateTime.now();
-    final dateTime = DateTime.parse(timestamp);
-    final difference = now.difference(dateTime);
+String calculateTimeAgo(String timestamp) {
+  final now = DateTime.now();
+  final dateTime = DateTime.parse(timestamp);
+  final difference = now.difference(dateTime);
 
-    if (difference.inDays > 0) {
-      return '${difference.inDays} day${difference.inDays > 1 ? 's' : ''} ago';
-    } else if (difference.inHours > 0) {
-      return '${difference.inHours} hour${difference.inHours > 1 ? 's' : ''} ago';
-    } else if (difference.inMinutes > 0) {
-      return '${difference.inMinutes} minute${difference.inMinutes > 1 ? 's' : ''} ago';
-    } else {
-      return 'just now';
-    }
+  if (difference.inDays > 0) {
+    return '${difference.inDays} day${difference.inDays > 1 ? 's' : ''} ago';
+  } else if (difference.inHours > 0) {
+    return '${difference.inHours} hour${difference.inHours > 1 ? 's' : ''} ago';
+  } else if (difference.inMinutes > 0) {
+    return '${difference.inMinutes} minute${difference.inMinutes > 1 ? 's' : ''} ago';
+  } else {
+    return 'just now';
   }
 }

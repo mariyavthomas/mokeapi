@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Refer extends StatelessWidget {
   const Refer({
@@ -10,9 +11,10 @@ class Refer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 18, left: 18),
       child: Container(
-        height: 90, // Adjusted height for better layout
+        height: 88, 
+        width: 374,// Adjusted height for better layout
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 85, 223, 140),
+          color: const Color.fromRGBO(41, 209, 119, 1),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
@@ -20,18 +22,23 @@ class Refer extends StatelessWidget {
               MainAxisAlignment.spaceBetween, // Ensure proper spacing
           children: [
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.only(left: 20),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              //  crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment:
                     MainAxisAlignment.center, // Center content vertically
                 children: [
-                  Text(
-                    'Refer & Earn',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 90),
+                    child: Text(
+                      'Refer & Earn',
+                      style: GoogleFonts.quicksand(
+                        textStyle: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25,
+                        color: Colors.white,
+                      ),
+                      )
                     ),
                   ),
                   Row(
@@ -39,7 +46,9 @@ class Refer extends StatelessWidget {
                       Text(
                         'Invite your friends & earn 15% off',
                         style:
-                            TextStyle(color: Colors.white, fontSize: 15),
+                            GoogleFonts.quicksand(
+                              textStyle: TextStyle(color: Colors.white, fontSize: 14,fontWeight: FontWeight.w500),
+                            )
                       ),
                       SizedBox(width: 10),
                       Icon(
@@ -53,7 +62,7 @@ class Refer extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  right: 12), // Space from the container edge
+                  right: 25,top: 40), // Space from the container edge
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(
                     8), // Rounded corners for the image

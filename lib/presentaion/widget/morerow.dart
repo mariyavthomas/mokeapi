@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MoreRow extends StatelessWidget {
   const MoreRow({
@@ -11,11 +12,14 @@ class MoreRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('More',
-            style: TextStyle(
-                color: Colors.green, fontWeight: FontWeight.w500)),
+            style: GoogleFonts.quicksand(
+              textStyle: TextStyle(
+                fontSize: 14,
+                color:Color.fromRGBO(41, 209, 119, 1), fontWeight: FontWeight.w700)
+            )),
         Icon(
           Icons.keyboard_arrow_down_outlined,
-          color: Colors.green,
+          color: Color.fromRGBO(41, 209, 119, 1),
         ),
       ],
     );

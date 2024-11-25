@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';  // For debug logs
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
 import 'package:mockapi/domin/notificationmode.dart';
 
 part 'fetchdata_event.dart';
@@ -16,50 +15,36 @@ class FetchdataBloc extends Bloc<FetchdataEvent, FetchdataState> {
     on<Fetchdata>(_fetchdata);
   }
 
-  FutureOr<void> _fetchdata(
-      Fetchdata event, Emitter<FetchdataState> emit) async {
+  FutureOr<void> _fetchdata(Fetchdata event, Emitter<FetchdataState> emit) async {
     emit(Fechdataloading());
     try {
-      // ignore: unused_local_variable
-      final data = await fetchall();
+      // Use isolate for fetching data
+      final data = await compute(fetchDataInIsolate, 'https://raw.githubusercontent.com/shabeersha/test-api/main/test-notifications.json');
       emit(Fechloadeddata(loadad: data));
     } catch (e) {
       emit(Fechdataerror(error: e.toString()));
     }
   }
 
-  Future<List<NotificationData>> fetchall() async {
-    final fetchurl =
-        'https://raw.githubusercontent.com/shabeersha/test-api/main/test-notifications.json';
-    final url = Uri.parse(fetchurl);
-
+  // This function will run in a separate isolate
+  static Future<List<NotificationData>> fetchDataInIsolate(String url) async {
+    final Uri uri = Uri.parse(url);
     try {
-      final response = await http.get(url);
+      final response = await http.get(uri);
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
-
-        print('Response Data: $data');
-
         if (data['data'] != null && data['data'] is List) {
           List<dynamic> notifications = data['data'];
-
-          List<NotificationData> list =
-              notifications.map((e) => NotificationData.fromJson(e)).toList();
-
-          print("Fetched ${list.length} notifications.");
-          return list;
+          return notifications.map((e) => NotificationData.fromJson(e)).toList();
         } else {
-          print("No notifications data found.");
           throw Exception('No notifications found in the response');
         }
       } else {
-        print("Failed to fetch data. Status code: ${response.statusCode}");
         throw Exception('Failed to load notifications');
       }
     } catch (e) {
-      print('Exception occurred in fetching data: $e');
-      throw Exception('Failed to fetch data');
+      rethrow;  // Propagate error back to the calling method
     }
   }
 }

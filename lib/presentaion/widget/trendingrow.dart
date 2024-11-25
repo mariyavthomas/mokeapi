@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TrendingRow extends StatelessWidget {
   const TrendingRow({
@@ -13,13 +14,17 @@ class TrendingRow extends StatelessWidget {
         children: [
           Text(
             'Trending',
-            style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+            style:GoogleFonts.quicksand(
+              textStyle: TextStyle(fontWeight: FontWeight.w700,fontSize: 22)
+            ),
           ),
-          SizedBox(width: 250),
+          SizedBox(width: 230),
           Text(
-            'See All',
-            style: TextStyle(
-                color: Colors.green, fontWeight: FontWeight.bold),
+            'See all',
+            style: GoogleFonts.quicksand(
+              textStyle: TextStyle(
+                color: const Color.fromRGBO(6, 194, 94, 1), fontWeight: FontWeight.w700,)
+            ),
           )
         ],
       ),

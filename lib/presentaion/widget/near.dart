@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NearRow extends StatelessWidget {
   const NearRow({
@@ -13,14 +14,17 @@ class NearRow extends StatelessWidget {
         children: [
           Text(
             'Nearby stores',
-            style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+            style: GoogleFonts.quicksand(
+                textStyle:
+                    TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
           ),
-          SizedBox(width: 200),
-          Text(
-            'See All',
-            style: TextStyle(
-                color: Colors.green, fontWeight: FontWeight.bold),
-          )
+          SizedBox(width: 190),
+          Text('See all',
+              style: GoogleFonts.quicksand(
+                textStyle: TextStyle(
+                    color: Color.fromRGBO(6, 194, 94, 1),
+                    fontWeight: FontWeight.w700),
+              ))
         ],
       ),
     );

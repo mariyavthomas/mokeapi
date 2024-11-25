@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NearByStore extends StatelessWidget {
   const NearByStore({
@@ -11,15 +12,18 @@ class NearByStore extends StatelessWidget {
       children: [
         Row(
           children: [
+            SizedBox(
+              width: 16,
+            ),
             Container(
               height: 80,
+              width: 72,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30)
-              ),
-              child: ClipRRect(
-                //borderRadius: BorderRadius.all(Radius.circular(4)), // Rounded corners
-                child:Image.asset('assets/image/newimag.png',fit: BoxFit.cover,)
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  image: DecorationImage(
+                    image: AssetImage('assets/image/imgaenear.jpg'),
+                    fit: BoxFit.cover,
+                  )),
             ),
             SizedBox(
               width: 25,
@@ -28,83 +32,111 @@ class NearByStore extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Mithas Freshly Baker',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  'Freshly Baker',
+                  style: GoogleFonts.quicksand(
+                      textStyle: TextStyle(
+                          height: 1.5, fontSize: 18, fontWeight: FontWeight.w800)),
                 ),
-                Text('Sweets, North Indian'),
-                Text('Site No - 1  |  6.4 kms'),
+                Text(
+                  'Sweets, North Indian',
+                  style: GoogleFonts.quicksand(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      height: 1,
+                      color: Color.fromRGBO(71, 71, 71, 1)),
+                ),
+                Text(
+                  'Site No - 1  |  6.4 kms',
+                  style: GoogleFonts.quicksand(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                      height: 1.5,
+                      color: Color.fromRGBO(71, 71, 71, 1)),
+                ),
                 Container(
                   width: 50,
                   height: 20,
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 225, 222, 222)),
+                  decoration:
+                      BoxDecoration(color: const Color.fromRGBO(65, 82, 159, 0.15)),
                   child: Center(
-                      child: Text(
-                    'Top Store',
-                    style: TextStyle(color: Colors.black, fontSize: 10),
-                  )),
+                      child: Text('Top Store',
+                          style: GoogleFonts.roboto(
+                            textStyle: TextStyle(
+                                color: Color.fromRGBO(80, 80, 80, 1),
+                                fontSize: 9,
+                                fontWeight: FontWeight.w500),
+                          ))),
                 ),
               ],
             ),
             SizedBox(
-              width: 30,
+              width: 80,
             ),
             Column(
               children: [
                 Row(
                   children: [
-                    Icon(
-                      Icons.star,
-                      size: 20,
-                    ),
+                    Icon(Icons.star,
+                        color: Color.fromRGBO(80, 80, 80, 1), size: 13),
+                        SizedBox(
+                          width: 4,
+                        ),
                     Text(
                       '4.1',
+                      style: GoogleFonts.quicksand(
+                          fontWeight: FontWeight.w500, fontSize: 16, height: 1.5),
                     )
                   ],
                 ),
-                Text(
-                  '45 mins',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 219, 133, 3),
-                      fontSize: 12),
-                )
+                Text('45 mins',
+                    style: GoogleFonts.quicksand(
+                      textStyle: TextStyle(
+                          color: const Color.fromRGBO(234, 126, 0, 1),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600),
+                    ))
               ],
             )
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 120),
-          child: SizedBox(
-            height: 10,
-            width: 280,
-            child: Divider(
-              thickness: 1,
-            ),
-          ),
+        Divider(
+          endIndent: 20,
+          indent: 110,
+          color: Color.fromRGBO(222, 222, 222, 1),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 120),
-          child: Row(
-            children: [
-              Icon(
-                Icons.percent,
-                color: Colors.orange,
-                size: 15,
-              ),
-              Text('Upto 10% OFF',
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
-              Icon(
-                Icons.nature,
-                color: Colors.green,
-                size: 15,
-              ),
-              Text(
-                '3400+ items available',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-              )
-            ],
-          ),
+        Row(
+       children: [
+        SizedBox(
+          width: 110,
+        ),
+        SizedBox(
+          width: 16,
+          height: 16,
+          child: Image.asset('assets/image/discount-sticker.png')
+        ),
+        SizedBox(width: 10,),
+        Text('Upto 10% OFF',style: GoogleFonts.quicksand(
+          textStyle: TextStyle(fontWeight: FontWeight.w700,fontSize: 12,)
+        ),),
+        SizedBox(
+          width: 20,
+        ),
+        SizedBox(
+          width: 16,
+          height: 16,
+          child: Image.asset('assets/image/gaia.png'),
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        Text('3400+ items available',style: GoogleFonts.quicksand(
+          fontWeight: FontWeight.w700,
+          fontSize: 12
+        ),)
+       ],
+        ),
+        SizedBox(
+          height: 10,
         )
       ],
     );

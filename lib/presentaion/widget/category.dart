@@ -19,18 +19,18 @@ class Categgory extends StatelessWidget {
           mainAxisSpacing: 17,
           children: [
             ServiceItem(
-              icon: 'assets/image/images1.png',
+              icon: 'assets/image/fast-food.png',
               label: 'Food Delivery',
               discountText: '10% Off',
             ),
             ServiceItem(
-              icon: 'assets/image/medician.jpg',
+              icon: 'assets/image/medicine.png',
               label: 'Medicines',
               discountText: '10% Off',
             ),
             ServiceItem(
-              icons: Icons.pets,
-              icon: '',
+              
+              icon: 'assets/image/dogpaw-03-Swatch_0018_651-22-Yellow-300x300__18549-removebg-preview.png',
               label: 'Pet Supplies',
               discountText: '10% Off',
             ),
@@ -45,7 +45,7 @@ class Categgory extends StatelessWidget {
               discountText: null,
             ),
             ServiceItem(
-              icon: 'assets/image/cosmetic.png',
+              icon: 'assets/image/cosmetics.png',
               label: 'Cosmetic',
               discountText: null,
             ),
@@ -55,7 +55,7 @@ class Categgory extends StatelessWidget {
               discountText: null,
             ),
             ServiceItem(
-              icon: 'assets/image/store.png',
+              icon: 'assets/image/in-store-demonstration.png',
               label: 'Stores',
               discountText: '10% Off',
             ),

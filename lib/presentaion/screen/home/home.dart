@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mockapi/presentaion/widget/category.dart';
 import 'package:mockapi/presentaion/widget/crea.dart';
 import 'package:mockapi/presentaion/widget/location.dart';
@@ -23,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ListView(
         children: [
           Location(),
@@ -32,33 +35,42 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(left: 26, top: 20),
             child: Text(
               "What would you like to do today?",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: GoogleFonts.quicksand(
+                textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+              ),
             ),
           ),
           Categgory(),
-          MoreRow(),
+           MoreRow(),
           Cutomtext(
             text: 'Top picks for you',
           ),
           PickOne(),
+          SizedBox(height: 16,),
           TrendingRow(),
+          SizedBox(height:10 ,),
           Icreamall(),
           Padding(
             padding: const EdgeInsets.only(left: 18),
             child: Text('Craze deals',
-                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+                style: GoogleFonts.quicksand(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 23,
+                  
+                ))
           ),
           Craze(),
+          SizedBox(height: 25,),
           Refer(),
           SizedBox(
-            height: 10,
+            height: 30,
           ),
           NearRow(),
           SizedBox(
-            height: 10,
+            height: 15,
           ),
           SizedBox(
-            height: 200,
+            height: 240,
             child: ListView.builder(
               scrollDirection: Axis.vertical, // Enables horizontal scrolling
               itemCount: 2, // Number of items to display
@@ -67,22 +79,20 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
+          
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Center(
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromARGB(255, 55, 171, 101)),
-                height: 45,
-                width: 250,
+                    color: const Color.fromRGBO(41, 209, 119, 1)),
+                height: 40,
+                width: 240,
                 child: Center(
                     child: Text(
                   'View all Store',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: GoogleFonts.roboto(textStyle: TextStyle(color: Colors.white, fontSize: 16,fontWeight: FontWeight.w500)),
                 )),
               ),
             ),
